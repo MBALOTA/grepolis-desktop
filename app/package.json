@@ -1,0 +1,14 @@
+{
+  "name": "grepolis-desktop",
+  "productName": "Grepolis Desktop",
+  "description": "Grepolis as a Desktop App",
+  "version": "0.0.0",
+  "author": "Matthias Balota <balota.me>",
+  "copyright": "© 2016, Matthias Balota",
+  "homepage": "http://balota.me/",
+  "license": "MIT",
+  "main": "background.js",
+  "dependencies": {
+    "fs-jetpack": "^0.9.0"
+  }
+}
