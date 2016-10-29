@@ -1,5 +1,5 @@
 # Grepolis Desktop
-Do you want to play Grepolis as a desktop app and not in a browser? Now you can!
+Do you want to play Grepolis as a desktop app and not in a browser? Now you can! [Check out the releases!](https://github.com/MBALOTA/grepolis-desktop/releases)
 
 Download the installer, or the portable version and enjoy playing Grepolis in the background.
 
