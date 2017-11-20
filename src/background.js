@@ -1,16 +1,18 @@
 //ELECTRON MAIN PROCESS
 //------------------------------------------------------------------------------
 
-import { app, Menu }                            from 'electron';
+import { app, Menu, Tray, globalShortcut }      from 'electron';
 import { devMenuTemplate }                      from './menu/dev_menu_template';
 import { viewMenuTemplate, helpMenuTemplate }   from './menu/menu_template';
 import createWindow                             from './helpers/window';
+const path = require('path')
 
 // Special module holding environment variables which you declared
 // in config/env_xxx.json file.
 import env from './env';
 
 var mainWindow;
+var tray;
 
 var setApplicationMenu = function () {
     var menus = [viewMenuTemplate, helpMenuTemplate];
@@ -32,11 +34,42 @@ app.on('ready', function () {
     setApplicationMenu();
 
     var mainWindow = createWindow('main', {
-        width: 1000,
+        width: 800,
         height: 600
     });
+  
+    function toggleMainWindow () {
+      if (mainWindow) {
+        if (mainWindow.isVisible()) {
+          mainWindow.hide();
+        } else {
+          mainWindow.show();
+        }
+
+        if (!tray) {
+            createTray();
+        }
+      }
+    }
+
+    function createTray () {
+        tray = new Tray(path.join(__dirname, '/img/grepolis_desktop.png'));
+        const contextMenu = Menu.buildFromTemplate([
+          {label: 'Toggle Visibility', click: () => {
+            toggleMainWindow();
+          }}
+        ]);
+        tray.setToolTip('Grepolis Desktop');
+        tray.setContextMenu(contextMenu);
+
+        tray.on('double-click', function () {
+            toggleMainWindow();
+        });
+    }
 
     mainWindow.loadURL('file://' + __dirname + '/app.html');
+
+    createTray();
 
     if (env.name === 'development') {
         mainWindow.openDevTools();

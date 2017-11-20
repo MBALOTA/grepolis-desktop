@@ -1,8 +1,8 @@
 {
   "name": "grepolis-desktop",
   "productName": "Grepolis Desktop",
-  "description": "Grepolis as a Desktop App",
-  "version": "0.0.0",
+  "description": "Grepolis Desktop",
+  "version": "0.0.1",
   "author": "Matthias Balota <balota.me>",
   "copyright": "© 2016, Matthias Balota",
   "homepage": "http://balota.me/",

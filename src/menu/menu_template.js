@@ -1,14 +1,33 @@
 export var viewMenuTemplate = {
     label: 'View',
     submenu: [
-        { label: 'Toggle Fullscreen', accelerator: process.platform === 'darwin' ? 'F' : 'F11',
-          click (item, focusedWindow) {
-            if (focusedWindow) {
-              var isfull = focusedWindow.isFullScreen();
-              focusedWindow.setFullScreen(!isfull);
-              focusedWindow.setMenuBarVisibility(isfull);
+        { label: 'Hide App', accelerator: process.platform === 'darwin' ? 'cmd+V' : 'F10',
+            click (item, focusedWindow) {
+                if (focusedWindow) {
+                    if (focusedWindow.isVisible()) {
+                        focusedWindow.hide();
+                    } else {
+                        focusedWindow.show();
+                    }
+                }
             }
-          }
+        },
+        { type: 'separator' },
+        { label: 'Toggle Menubar', accelerator: process.platform === 'darwin' ? 'cmd+M' : 'F1',
+            click (item, focusedWindow) {
+                if (focusedWindow) {
+                    focusedWindow.setMenuBarVisibility(!focusedWindow.isMenuBarVisible());
+                }
+            }
+        },
+        { label: 'Toggle Fullscreen', accelerator: process.platform === 'darwin' ? 'cmd+F' : 'F11',
+            click (item, focusedWindow) {
+                if (focusedWindow) {
+                    var isfull = focusedWindow.isFullScreen();
+                    focusedWindow.setFullScreen(!isfull);
+                    focusedWindow.setMenuBarVisibility(isfull);
+                }
+            }
         },
         { type: 'separator' },
         { role: 'resetzoom' },
@@ -35,7 +54,7 @@ export var helpMenuTemplate = {
           }
         },
         { type: 'separator' },
-        { label: 'About GD',
+        { label: 'About Grepolis Desktop',
           click () {
             require('electron').shell.openExternal('https://github.com/MBALOTA/grepolis-desktop')
           }
